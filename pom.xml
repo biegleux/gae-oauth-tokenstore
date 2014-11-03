@@ -3,7 +3,7 @@
 	<groupId>com.github.biegleux</groupId>
 	<artifactId>gae-oauth-tokenstore</artifactId>
 	<packaging>jar</packaging>
-	<version>0.1</version>
+	<version>0.2-SNAPSHOT</version>
 	<name>GaeTokenStore</name>
 	<description>Persistent Spring's OAuth2 TokenStore for Google App Engine</description>
 	<url>https://github.com/biegleux/gae-oauth-tokenstore</url>
