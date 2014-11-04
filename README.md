@@ -10,7 +10,7 @@ Add the following dependency to your `pom.xml`:
 <dependency>
 	<groupId>com.github.biegleux</groupId>
 	<artifactId>gae-oauth-tokenstore</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1</version>
 </dependency>
 ```
 
