@@ -256,8 +256,7 @@ public class GaeTokenStore implements TokenStore {
 			try {
 				accessTokens.add(gaeOAuthAccessToken.getToken());
 			} catch (JDOException e) {
-				//TODO
-				this.accessTokens.delete(gaeOAuthAccessToken);
+				this.accessTokens.deleteByTokenId(gaeOAuthAccessToken.getTokenId());
 			}
 		}
 
@@ -282,8 +281,7 @@ public class GaeTokenStore implements TokenStore {
 			try {
 				accessTokens.add(gaeOAuthAccessToken.getToken());
 			} catch (JDOException e) {
-				//TODO
-				this.accessTokens.delete(gaeOAuthAccessToken);
+				this.accessTokens.deleteByTokenId(gaeOAuthAccessToken.getTokenId());
 			}
 		}
 		accessTokens = removeNulls(accessTokens);

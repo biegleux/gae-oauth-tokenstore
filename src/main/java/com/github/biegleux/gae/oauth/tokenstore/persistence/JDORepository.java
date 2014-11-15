@@ -92,22 +92,4 @@ abstract class JDORepository<T, ID> {
 			pm.close();
 		}
 	}
-
-	/**
-	 * Deletes the persistent entity from the data store.
-	 * @param entity A persistent entity.
-	 */
-	public void delete(T entity) {
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		pm.deletePersistent(entity);
-	}
-
-	/**
-	 * Deletes a Collection of entities from the data store.
-	 * @param entities Collection of persistent instances.
-	 */
-	public void deleteAll(Collection<T> entities) {
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		pm.deletePersistentAll(entities);
-	}
 }

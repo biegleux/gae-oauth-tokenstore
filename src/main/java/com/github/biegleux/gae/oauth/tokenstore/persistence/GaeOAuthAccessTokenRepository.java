@@ -81,28 +81,6 @@ public class GaeOAuthAccessTokenRepository extends GaeOAuthTokenRepository<GaeOA
 	}
 
 	/**
-	 * Looks up the {@link GaeOAuthAccessToken} entities with the given refresh token.
-	 * @param refreshToken Refresh token.
-	 * @return List of the corresponding {@link GaeOAuthAccessToken} entities.
-	 */
-	@SuppressWarnings("unchecked")
-	public List<GaeOAuthAccessToken> findByRefreshToken(String refreshToken) {
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Query query = null;
-		try {
-			query = pm.newQuery(GaeOAuthAccessToken.class);
-			query.setFilter("refreshToken == param");
-			query.declareParameters("String param");
-			return new ArrayList<GaeOAuthAccessToken> ((Collection<GaeOAuthAccessToken>) query.execute(refreshToken));
-		} finally {
-			if (query != null) {
-				query.closeAll();
-			}
-			pm.close();
-		}
-	}
-
-	/**
 	 * Deletes the {@link GaeOAuthAccessToken} entities with the given refresh token.
 	 * @param refreshToken Refresh token.
 	 * @return Number of {@link GaeOAuthAccessToken} entities that were deleted.
