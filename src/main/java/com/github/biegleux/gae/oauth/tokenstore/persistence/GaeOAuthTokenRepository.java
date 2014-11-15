@@ -80,4 +80,25 @@ abstract class GaeOAuthTokenRepository<T extends GaeOAuthToken<?>> extends JDORe
 			pm.close();
 		}
 	}
+
+	/**
+	 * Deletes the {@link GaeOAuthToken} entities with the given token ID.
+	 * @param tokenId Token ID.
+	 * @return Number of {@link GaeOAuthToken} entities that were deleted.
+	 */
+	public long deleteByTokenId(String tokenId) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Query query = null;
+		try {
+			query = pm.newQuery(clazz);
+			query.setFilter("tokenId == param");
+			query.declareParameters("String param");
+			return query.deletePersistentAll(tokenId);
+		} finally {
+			if (query != null) {
+				query.closeAll();
+			}
+			pm.close();
+		}
+	}
 }

@@ -138,10 +138,7 @@ public class GaeTokenStore implements TokenStore {
 	}
 
 	public void removeAccessToken(String tokenValue) {
-		GaeOAuthAccessToken gaeOAuthAccessToken = accessTokens.findByTokenId(extractTokenKey(tokenValue));
-		if (gaeOAuthAccessToken != null) {
-			accessTokens.delete(gaeOAuthAccessToken);
-		}
+		accessTokens.deleteByTokenId(extractTokenKey(tokenValue));
 	}
 
 	@Override
@@ -206,10 +203,7 @@ public class GaeTokenStore implements TokenStore {
 	}
 
 	public void removeRefreshToken(String token) {
-		GaeOAuthRefreshToken gaeOAuthRefreshToken = refreshTokens.findByTokenId(extractTokenKey(token));
-		if (gaeOAuthRefreshToken != null) {
-			refreshTokens.delete(gaeOAuthRefreshToken);
-		}
+		refreshTokens.deleteByTokenId(extractTokenKey(token));
 	}
 
 	@Override
@@ -243,8 +237,7 @@ public class GaeTokenStore implements TokenStore {
 	}
 
 	public void removeAccessTokenUsingRefreshToken(String refreshToken) {
-		List<GaeOAuthAccessToken> gaeOAuthAccessTokens = accessTokens.findByRefreshToken(extractTokenKey(refreshToken));
-		accessTokens.deleteAll(gaeOAuthAccessTokens);
+		accessTokens.deleteByRefreshToken(extractTokenKey(refreshToken));
 	}
 
 	@Override
@@ -263,6 +256,7 @@ public class GaeTokenStore implements TokenStore {
 			try {
 				accessTokens.add(gaeOAuthAccessToken.getToken());
 			} catch (JDOException e) {
+				//TODO
 				this.accessTokens.delete(gaeOAuthAccessToken);
 			}
 		}
@@ -288,6 +282,7 @@ public class GaeTokenStore implements TokenStore {
 			try {
 				accessTokens.add(gaeOAuthAccessToken.getToken());
 			} catch (JDOException e) {
+				//TODO
 				this.accessTokens.delete(gaeOAuthAccessToken);
 			}
 		}

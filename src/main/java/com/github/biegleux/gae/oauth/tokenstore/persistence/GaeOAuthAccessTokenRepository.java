@@ -101,4 +101,25 @@ public class GaeOAuthAccessTokenRepository extends GaeOAuthTokenRepository<GaeOA
 			pm.close();
 		}
 	}
+
+	/**
+	 * Deletes the {@link GaeOAuthAccessToken} entities with the given refresh token.
+	 * @param refreshToken Refresh token.
+	 * @return Number of {@link GaeOAuthAccessToken} entities that were deleted.
+	 */
+	public long deleteByRefreshToken(String refreshToken) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Query query = null;
+		try {
+			query = pm.newQuery(GaeOAuthAccessToken.class);
+			query.setFilter("refreshToken == param");
+			query.declareParameters("String param");
+			return query.deletePersistentAll(refreshToken);
+		} finally {
+			if (query != null) {
+				query.closeAll();
+			}
+			pm.close();
+		}
+	}
 }
